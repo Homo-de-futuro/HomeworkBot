@@ -123,5 +123,3 @@ def parse_next_homework(user_login, user_password):
     finally:
         driver.close()
         driver.quit()
-
-print(parse_next_homework('=79649255673', 'dbtuvkUf_4gk'))
