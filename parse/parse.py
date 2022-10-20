@@ -10,26 +10,17 @@ from datetime import datetime, timedelta
 import os
 
 def get_next_homework_date():
-    #First we should know what day of week is it today,
-    #Because we have not classes in saturday and sunday
     now = datetime.now()
     
     if datetime.weekday(now) == 4:
         #If its friday we add 3 days to current date 
-        rev_date = str(datetime.now() + timedelta(days=3))
-        rev_date = rev_date.split(' ')[0].split('-')[::-1]
+        date =(datetime.now() + timedelta(days=3)).strftime("%d.%m.%Y")
     elif datetime.weekday(now) == 5:
         #If its saturday we add 2 days to current date
-        rev_date = str(datetime.now() + timedelta(days=2))
-        rev_date = rev_date.split(' ')[0].split('-')[::-1]
+        date =(datetime.now() + timedelta(days=2)).strftime("%d.%m.%Y")
     else:
         #If its any other day of week
-        rev_date = str(datetime.now() + timedelta(days=1))
-        rev_date = rev_date.split(' ')[0].split('-')[::-1]
-    date = ''
-    for elem in rev_date:
-        date+=elem + '.'
-    date = date[:-1] 
+        date =(datetime.now() + timedelta(days=1)).strftime("%d.%m.%Y")
 
     return date
 
@@ -38,19 +29,13 @@ def get_next_homework_date():
 def parse_next_homework(user_login, user_password):
     url = 'https://login.dnevnik.ru/esia/redirect/adygea'
     
-    # options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36")  
-    # #Hide a browser window
-    # options.headless = True
     options = webdriver.ChromeOptions()  
     options.add_argument("--headless")
     options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--no-sandbox")
 
     driver = webdriver.Chrome(executable_path=ChromeDriverManager().install(), options=options)
-     
-    #Install chrome driver for selenium with using webdriver_manager
-    # service = Service(executable_path = ChromeDriverManager().install())
-    # driver = webdriver.Chrome(service=service, options=options)
+    
 
     try:
         print("start selenium")
