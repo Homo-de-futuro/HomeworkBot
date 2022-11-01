@@ -102,8 +102,6 @@ def parse_next_homework(user_login, user_password):
                     homework_dict[subject] = homework_dict[subject] + ' ; ' + task
         return homework_dict
     except Exception as ex:
-        print('!!!!!!!!!!!!!!Ошибка!!!!!!!!!!!!!!!!')
-        print(ex)
         parse_next_homework(user_login, user_password)
     finally:
         driver.close()
