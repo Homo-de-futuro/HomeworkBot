@@ -6,3 +6,4 @@ aiogram
 apscheduler
 beautifulsoup4
 webdriver-manager
+python-dotenv
